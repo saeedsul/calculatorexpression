@@ -1,0 +1,16 @@
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.exe
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.deps.json
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.runtimeconfig.json
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.runtimeconfig.dev.json
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.dll
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.ConsoleApp.pdb
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.AssemblyInfoInputs.cache
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.AssemblyInfo.cs
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.csproj.CoreCompileInputs.cache
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.dll
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.pdb
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.genruntimeconfig.cache
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.csprojAssemblyReference.cache
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.Common.dll
+D:\Source\Calculator\Calculator.ConsoleApp\bin\Debug\netcoreapp3.1\Calculator.Common.pdb
+D:\Source\Calculator\Calculator.ConsoleApp\obj\Debug\netcoreapp3.1\Calculator.ConsoleApp.csproj.CopyComplete

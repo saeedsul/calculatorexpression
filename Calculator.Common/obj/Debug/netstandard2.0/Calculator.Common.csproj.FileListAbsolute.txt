@@ -1,0 +1,9 @@
+D:\Source\Calculator\Calculator.Common\bin\Debug\netstandard2.0\Calculator.Common.deps.json
+D:\Source\Calculator\Calculator.Common\bin\Debug\netstandard2.0\Calculator.Common.dll
+D:\Source\Calculator\Calculator.Common\bin\Debug\netstandard2.0\Calculator.Common.pdb
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.csprojAssemblyReference.cache
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.AssemblyInfoInputs.cache
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.AssemblyInfo.cs
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.csproj.CoreCompileInputs.cache
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.dll
+D:\Source\Calculator\Calculator.Common\obj\Debug\netstandard2.0\Calculator.Common.pdb

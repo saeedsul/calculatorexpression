@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v3.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v3.1": {
+      "Calculator.ConsoleApp/1.0.0": {
+        "dependencies": {
+          "Calculator.Common": "1.0.0"
+        },
+        "runtime": {
+          "Calculator.ConsoleApp.dll": {}
+        }
+      },
+      "Calculator.Common/1.0.0": {
+        "runtime": {
+          "Calculator.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Calculator.ConsoleApp/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Calculator.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
