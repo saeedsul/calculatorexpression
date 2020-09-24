@@ -21,7 +21,6 @@ namespace Calculator.Common
                 return "Invalid expression";
             }
 
-            expression = expression.Replace('.', ',');
             expression = expression.Replace(" ", "");
 
             double result;
@@ -94,19 +93,18 @@ namespace Calculator.Common
                 var absValue = Math.Abs(value).ToString();
                 var decimals = absValue.Length - (absValue.IndexOf('.') - 1);
 
+                var valueToPowerOf = value * Math.Pow(100, decimals);
+                var divisor = GreatestCommonDonominator((int)valueToPowerOf, (int)Math.Pow(100, decimals));
 
-                var toPowerOf = value * Math.Pow(100, decimals);
-                var divisor = GreatestCommonDonominator((int)toPowerOf, (int)Math.Pow(100, decimals));
-
-                return $"{toPowerOf / divisor}/{(Math.Pow(100, decimals) / divisor)}";
+                return $"{valueToPowerOf / divisor}/{(Math.Pow(100, decimals) / divisor)}";
             }
             return value.ToString();
         }
 
-        static int GreatestCommonDonominator(int a, int b)
+        static int GreatestCommonDonominator(int valueToPowerOf, int toPowerOf)
         {
-            if (b == 0) return a;
-            else return GreatestCommonDonominator(b, a % b);
+            if (toPowerOf == 0) return valueToPowerOf;
+            else return GreatestCommonDonominator(toPowerOf, valueToPowerOf % toPowerOf);
         }
 
         private static double Divide(double firstNumber, double secondNumber) => firstNumber / secondNumber;
