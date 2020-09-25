@@ -5,17 +5,19 @@ namespace Calculator.Common
 {
     public static class Calculator
     {
-        private static readonly string multiplyDividePattern = @"(?<firstNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))(?<symbol>[*/])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))";
+        private const string MultiplyDividePattern = @"(?<firstNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))(?<symbol>[*/])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))";
+
         //@"(?<firstNumber>(\d+)|(\d+\.\d+))(?<symbol>[*\/])(?<secondNumber>(\d+)|(\d+\.\d+))";
-        private static readonly string addSubtractPatten = @"(?<firstNumber>(?<![*/\d-])([-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))))(?<symbol>[-+])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))(?![/*\d]))";
+        private const string AddSubtractPatten = @"(?<firstNumber>(?<![*/\d-])([-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))))(?<symbol>[-+])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))(?![/*\d]))";
+
         //@"(?<firstNumber>(\d+)|(\d+\.\d+))(?<symbol>[-+])(?<secondNumber>(\d+)|(\d+\.\d+))";
 
-        private static readonly string decimalsPattern = @"^\d+\.?\d+$";
-        private static readonly string allowedPattern = @"^\s*(\d+)(?:\s*([-+*\/])\s*(?:\d+)\s*)+$";
+        private const string DecimalsPattern = @"^\d+\.?\d+$";
+        private const string AllowedPattern = @"^\s*(\d+)(?:\s*([-+*\/])\s*(?:\d+)\s*)+$";
 
         public static string Calculate(string expression)
         {
-            var regex = new Regex(allowedPattern);
+            var regex = new Regex(AllowedPattern);
             if(!regex.IsMatch(expression))
             {
                 return "Invalid expression";
@@ -26,12 +28,12 @@ namespace Calculator.Common
             double result;
             while (!double.TryParse(expression, out result))
             {
-                expression = Compute(expression, multiplyDividePattern);
+                expression = Compute(expression, MultiplyDividePattern);
 
-                expression = Compute(expression, addSubtractPatten);
+                expression = Compute(expression, AddSubtractPatten);
             }
            
-            return DoubleToFraction(decimalsPattern, result);          
+            return DoubleToFraction(DecimalsPattern, result);          
         }
 
         private static string Compute(string expression, string pattern)

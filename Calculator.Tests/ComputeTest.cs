@@ -89,7 +89,7 @@ namespace Calculator.Tests
         public void Calculate_Scenario_Four_Should_Return_Success()
         {
             //Arrange
-            const string expression = "7-8/6*6 + 25/4-20 /78*3";
+            const string expression = "7-8/6*6 + 25/4-20 /78* 3";
 
             const string result = "449/100";
 
