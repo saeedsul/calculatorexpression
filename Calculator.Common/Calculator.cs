@@ -5,17 +5,17 @@ namespace Calculator.Common
 {
     public static class Calculator
     {
-        private static string multiplyDividePattern = @"(?<firstNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))(?<symbol>[*/])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))";
+        private static readonly string multiplyDividePattern = @"(?<firstNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))(?<symbol>[*/])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?)))";
         //@"(?<firstNumber>(\d+)|(\d+\.\d+))(?<symbol>[*\/])(?<secondNumber>(\d+)|(\d+\.\d+))";
-        private static string addSubtractPatten = @"(?<firstNumber>(?<![*/\d-])([-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))))(?<symbol>[-+])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))(?![/*\d]))";
+        private static readonly string addSubtractPatten = @"(?<firstNumber>(?<![*/\d-])([-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))))(?<symbol>[-+])(?<secondNumber>[-]?((∞)|(((\d+,\d+)|(\d+\.\d+)|(\d+))(E[+-]\d+)?))(?![/*\d]))";
         //@"(?<firstNumber>(\d+)|(\d+\.\d+))(?<symbol>[-+])(?<secondNumber>(\d+)|(\d+\.\d+))";
 
-        private static string decimalsPattern = @"^\d+\.?\d+$";
-        private static string allowedPattern = @"^\s*(\d+)(?:\s*([-+*\/])\s*(?:\d+)\s*)+$";
+        private static readonly string decimalsPattern = @"^\d+\.?\d+$";
+        private static readonly string allowedPattern = @"^\s*(\d+)(?:\s*([-+*\/])\s*(?:\d+)\s*)+$";
 
         public static string Calculate(string expression)
         {
-            Regex regex = new Regex(allowedPattern);
+            var regex = new Regex(allowedPattern);
             if(!regex.IsMatch(expression))
             {
                 return "Invalid expression";
@@ -36,35 +36,35 @@ namespace Calculator.Common
 
         private static string Compute(string expression, string pattern)
         {    
-            Regex regex = new Regex(pattern);
+            var regex = new Regex(pattern);
 
             while (regex.IsMatch(expression))
             {
-                Match match = regex.Match(expression);
-                double firstNumber = double.Parse(match.Groups["firstNumber"].Value);
-                double secondNumber = double.Parse(match.Groups["secondNumber"].Value);
+                var match = regex.Match(expression);
+                var firstNumber = double.Parse(match.Groups["firstNumber"].Value);
+                var secondNumber = double.Parse(match.Groups["secondNumber"].Value);
 
                 switch (match.Groups["symbol"].Value)
                 {
                     case "-":
                         {
                             expression = expression.Remove(match.Index, match.Length);
-                            expression = expression.Insert(match.Index, Subtract(firstNumber, secondNumber).ToString("0.##"));
+                            expression = expression.Insert(match.Index, $"{Subtract(firstNumber, secondNumber):0.##}");
                         }
                         break;
                     case "+":
                         {
                             expression = expression.Remove(match.Index, match.Length);
-                            expression = expression.Insert(match.Index, Sum(firstNumber, secondNumber).ToString("0.##"));
+                            expression = expression.Insert(match.Index, $"{Sum(firstNumber, secondNumber):0.##}");
                         }
                         break;
                     case "*":
                         {
                             expression = expression.Remove(match.Index, match.Length);
                             if (firstNumber < 0 && secondNumber < 0)
-                                expression = expression.Insert(match.Index, "+" + Multiply(firstNumber,secondNumber).ToString("0.##"));
+                                expression = expression.Insert(match.Index, "+" + $"{Multiply(firstNumber, secondNumber):0.##}");
                             else
-                                expression = expression.Insert(match.Index, Multiply(firstNumber, secondNumber).ToString("0.##"));
+                                expression = expression.Insert(match.Index, $"{Multiply(firstNumber, secondNumber):0.##}");
                         }
                         break;
                     case "/":
@@ -74,9 +74,9 @@ namespace Calculator.Common
 
                             expression = expression.Remove(match.Index, match.Length);
                             if (firstNumber < 0 && secondNumber < 0)
-                                expression = expression.Insert(match.Index, "+" + Divide(firstNumber,secondNumber).ToString("0.##"));
+                                expression = expression.Insert(match.Index, "+" + $"{Divide(firstNumber, secondNumber):0.##}");
                             else
-                                expression = expression.Insert(match.Index, Divide(firstNumber,secondNumber).ToString("0.##"));
+                                expression = expression.Insert(match.Index, $"{Divide(firstNumber, secondNumber):0.##}");
                         }
                         break;
                 }
@@ -87,24 +87,22 @@ namespace Calculator.Common
 
         private static string DoubleToFraction(string pattern, double value)
         {
-            Regex regex = new Regex(pattern);
-            if(regex.IsMatch(value.ToString()))
-            {
-                var absValue = Math.Abs(value).ToString();
-                var decimals = absValue.Length - (absValue.IndexOf('.') - 1);
+            var regex = new Regex(pattern);
 
-                var valueToPowerOf = value * Math.Pow(100, decimals);
-                var divisor = GreatestCommonDonominator((int)valueToPowerOf, (int)Math.Pow(100, decimals));
+            if (!regex.IsMatch(value.ToString())) return value.ToString();
 
-                return $"{valueToPowerOf / divisor}/{(Math.Pow(100, decimals) / divisor)}";
-            }
-            return value.ToString();
+            var absValue = Math.Abs(value).ToString();
+            var decimals = absValue.Length - (absValue.IndexOf('.') - 1);
+
+            var valueToPowerOf = value * Math.Pow(100, decimals);
+            var divisor = GreatestCommonDinominator((int)valueToPowerOf, (int)Math.Pow(100, decimals));
+
+            return $"{valueToPowerOf / divisor}/{(Math.Pow(100, decimals) / divisor)}";
         }
 
-        static int GreatestCommonDonominator(int valueToPowerOf, int toPowerOf)
+        static int GreatestCommonDinominator(int valueToPowerOf, int toPowerOf)
         {
-            if (toPowerOf == 0) return valueToPowerOf;
-            else return GreatestCommonDonominator(toPowerOf, valueToPowerOf % toPowerOf);
+            return toPowerOf == 0 ? valueToPowerOf : GreatestCommonDinominator(toPowerOf, valueToPowerOf % toPowerOf);
         }
 
         private static double Divide(double firstNumber, double secondNumber) => firstNumber / secondNumber;
